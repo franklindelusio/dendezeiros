@@ -1,0 +1,6 @@
+# Cloudflare Pages — Dendezeiros Vila Comercial
+# Sem credenciais aqui: a autenticação vem de `wrangler login` (OAuth)
+# ou das variáveis de ambiente CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID.
+name = "dendezeiros"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-01"

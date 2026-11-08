@@ -1,0 +1,42 @@
+# Testes automáticos a cada push e pull request.
+# A PUBLICAÇÃO é feita pelo Cloudflare Pages (integração com o GitHub),
+# não por este workflow. O build do Cloudflare (`npm run build`) roda os
+# testes unitários antes (script "prebuild"): se falharem, nada é publicado.
+name: Testes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Testes unitários e build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - run: npm run build
+
+  e2e:
+    name: Testes de navegador (vídeo, WhatsApp, Pixel, consentimento)
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-save playwright@1
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/e2e/run.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas-de-tela
+          path: tests/e2e/screens/
+          if-no-files-found: ignore
