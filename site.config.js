@@ -113,7 +113,7 @@ export default {
   video: {
     // ID do vídeo no YouTube (ex.: 'g8UmuXhZ55Y'). Vazio = mostra a ilustração
     // com "Vídeo em breve" e o botão do WhatsApp liberado desde o início.
-    youtubeId: '6G0EiI1_WBg',
+    youtubeId: 'aVu6xNLxlVI',
     autoplayMuted: true,
     privacyEnhanced: true,
     apiTimeoutMs: 10000,

@@ -68,7 +68,7 @@ let server = await startServer();
   check('Mensagem inclui referência curta da campanha', decodeURIComponent(sec.split('text=')[1]).endsWith('Ref: lancamento/reels01'));
   check('Autoplay mudo iniciou', (await page.locator('#player-btn').getAttribute('data-action')) === 'unmute');
   const ytCfg = await page.evaluate(() => window.__ytLog[0]);
-  check('Player usa youtube-nocookie + playsinline', ytCfg.host === 'https://www.youtube-nocookie.com' && ytCfg.vars.playsinline === 1 && ytCfg.videoId === '6G0EiI1_WBg');
+  check('Player usa youtube-nocookie + playsinline', ytCfg.host === 'https://www.youtube-nocookie.com' && ytCfg.vars.playsinline === 1 && ytCfg.videoId === 'aVu6xNLxlVI');
 
   await page.clock.runFor(15000);
   check('15 s assistidos: ainda bloqueado', (await state(page)) === 'locked');
